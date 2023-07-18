@@ -251,8 +251,9 @@ pets.forEach(pet => {
   <img src=${pet.imageUrl} class="card-img-top" alt=${pet.name}>
     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
   </div>
-  <div class="card-footer bg-transparent border-success">${pet.type}</div>
+  <div class="card-footer bg-success-subtle border-success">${pet.type}
+  </div>
 </div>`
-})
+}); 
 
-targetApp.innerHTML = domString; 
+targetApp.innerHTML = domString;
