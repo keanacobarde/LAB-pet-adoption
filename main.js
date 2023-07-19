@@ -241,9 +241,11 @@ const pets = [
     }
   ];
 
+
+//Rendering Buttons 
 const targetBtns = document.querySelector(".app_btns");
-targetBtns.innerHTML = `<button type="button" class="btn btn-info btn-sm">Cats</button>
-<button type="button" class="btn btn-success btn-sm">Dogs</button> <button type="button" class="btn btn-warning btn-sm">Dinos</button>`
+targetBtns.innerHTML = `<button type="button" class="btn btn-info btn-sm" id="cats">Cats</button>
+<button type="button" class="btn btn-success btn-sm" id="dogs">Dogs</button> <button type="button" class="btn btn-warning btn-sm" id="dinos">Dinos</button>`
 
 const targetApp = document.querySelector("#app_pets"); 
 
@@ -261,3 +263,24 @@ pets.forEach(pet => {
 }); 
 
 targetApp.innerHTML = domString;
+
+
+//Functions - Filtering through Pets
+// const showCats = () => {
+//   domString = '';  
+  
+// }
+
+//Event Listeners - Choosing specific buttons
+document
+  .querySelector("#cats")
+  .addEventListener('click', () => {
+  console.log("test")})
+document
+  .querySelector("#dogs")
+  .addEventListener('click', () => {
+  console.log("test")})
+document
+  .querySelector("#dinos")
+  .addEventListener('click', () => {
+  console.log("test")})
