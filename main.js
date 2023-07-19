@@ -241,6 +241,10 @@ const pets = [
     }
   ];
 
+const targetBtns = document.querySelector(".app_btns");
+targetBtns.innerHTML = `<button type="button" class="btn btn-info btn-sm">Cats</button>
+<button type="button" class="btn btn-success btn-sm">Dogs</button> <button type="button" class="btn btn-warning btn-sm">Dinos</button>`
+
 const targetApp = document.querySelector("#app_pets"); 
 
 domString = ""; 
@@ -251,7 +255,7 @@ pets.forEach(pet => {
   <img src=${pet.imageUrl} class="card-img-top" alt=${pet.name}>
     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
   </div>
-  <div class="card-footer bg-success-subtle border-success">${pet.type}
+  <div class="card-footer bg-info-subtle border-success">${pet.type}
   </div>
 </div>`
 }); 

@@ -33,3 +33,15 @@ Once you have completed your entity, [compare with this one](https://dbdiagram.i
 
 ## Requirement - Part 5: Delete Pets
 - Each card should have a delete button that when clicked removes the pet from the array and re-renders the DOM
+
+# Documentation
+Colors for footers: 
+- Green (Dog) - "card-footer bg-success-subtle border-success"
+- Yellow (Dino) - "card-footer bg-warning-subtle border-success"
+- Blue (Cat) - "card-footer bg-info-subtle border-success"
+```
+<div class=${pet.type === "cat" ? "card-footer bg-info-subtle border-success" :
+"card-footer bg- border-success"}>${pet.type}
+</div>
+
+```
