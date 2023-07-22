@@ -245,7 +245,7 @@ const pets = [
 //Rendering Buttons 
 const targetBtns = document.querySelector(".app_btns");
 targetBtns.innerHTML = `<button type="button" class="btn btn-info btn-sm" id="cats">Cats</button>
-<button type="button" class="btn btn-success btn-sm" id="dogs">Dogs</button> <button type="button" class="btn btn-warning btn-sm" id="dinos">Dinos</button> <button type="button" class="btn btn-danger btn-sm" id="showAll">Show All</button>`
+<button type="button" class="btn btn-success btn-sm" id="dogs">Dogs</button> <button type="button" class="btn btn-warning btn-sm" id="dinos">Dinos</button> <button type="button" class="btn btn-danger btn-sm" id="showAll">Show All</button><button type="button" class="btn btn-info btn-sm" id="showForm">Show Form</button>`
 
 const renderToDom = (divId, html) => {
   document.querySelector(divId).innerHTML = html;
@@ -275,6 +275,67 @@ const filteredPetArray = pets.filter((pet) => pet.type == petType);
 cardsOnDom(filteredPetArray); 
 }
 
+
+//Creating a Form 
+const petForm = () => {
+let domString = ''; 
+domString = `<form>
+<div class="mb-3">
+  <label for="PetName" class="form-label">Pet Name</label>
+  <input type="Name" class="form-control" id="PetName" aria-describedby="PetName>
+</div>
+<div class="mb-3">
+  <label for="ImageURL" class="form-label">Image URL</label>
+  <input type="image link" class="form-control" id="ImageURL">
+</div>
+<div class="mb-3">
+  <label for="Pet Description" class="form-label">Pet Description</label>
+  <input type="description" class="form-control" id="PetDescription">
+</div>
+<div class="mb-3">
+  <label for="PetType" class="form-label">Pet Type</label>
+  <input type="PetType" class="form-control" id="PetType">
+</div>
+<button type="submit" class="btn btn-primary">Submit</button>
+</form>`
+renderToDom("#app_form", domString); 
+}
+
+//Creating Object for Pet 
+const createPet = (e) => {
+  e.preventDefault(); 
+  const petObj = { 
+    id: pets.length + 1,
+    name: document.querySelector("#PetName").value,
+    ImageURL: document.querySelector("#ImageURL").value, 
+    PetDescription: document.querySelector("#PetDescription").value, 
+    PetType: document.querySelector("#PetType").value 
+  }
+pushingPets(petObj); 
+} 
+
+//Pushing Pets to Array from Form
+const pushingPets = (input) => {
+  pets.push (
+    {
+      name: input.name, 
+      imageURL: input.ImageURL,
+      petDescription: input.PetDescription,
+      type: input.PetType
+    }
+  )
+return document.querySelector("#app_pets").innerHTML += 
+`<div class="card border-success mb-3" style="max-width:18rem;">
+    <div class="card-header bg-transparent border-success"> ${input.name} </div>
+    <div class="card-body text-success">
+    <img src=${input.ImageUrl} class="card-img-top" alt=${input.name}>
+      <p class="card-text">${input.PetDescription}</p>
+    </div>
+    <div class="card-footer bg-info-subtle border-success">${input.PetType}
+    </div>
+  </div>`
+}
+
 //Event Listeners - Choosing Specific Pets and Showing All Pets 
 document
   .querySelector("#cats")
@@ -293,4 +354,11 @@ document
   .addEventListener('click', () => {
     renderToDom("#app_pets", cardsOnDom(pets)); 
   })
-
+document
+.querySelector("#showForm")
+.addEventListener('click', () => {
+  petForm(); 
+})
+document
+  .querySelector("#app_form")
+  .addEventListener(("submit"), createPet);
