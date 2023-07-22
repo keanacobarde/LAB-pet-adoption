@@ -293,3 +293,4 @@ document
   .addEventListener('click', () => {
     renderToDom("#app_pets", cardsOnDom(pets)); 
   })
+
