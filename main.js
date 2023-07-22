@@ -247,110 +247,50 @@ const targetBtns = document.querySelector(".app_btns");
 targetBtns.innerHTML = `<button type="button" class="btn btn-info btn-sm" id="cats">Cats</button>
 <button type="button" class="btn btn-success btn-sm" id="dogs">Dogs</button> <button type="button" class="btn btn-warning btn-sm" id="dinos">Dinos</button> <button type="button" class="btn btn-danger btn-sm" id="showAll">Show All</button>`
 
-const targetApp = document.querySelector("#app_pets"); 
-
-domString = ""; 
-pets.forEach(pet => {
-  domString += `<div class="card border-success mb-3" style="max-width:18rem;">
-  <div class="card-header bg-transparent border-success"> ${pet.name} </div>
-  <div class="card-body text-success">
-  <img src=${pet.imageUrl} class="card-img-top" alt=${pet.name}>
-    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-  </div>
-  <div class="card-footer bg-info-subtle border-success">${pet.type}
-  </div>
-</div>`
-}); 
-
-targetApp.innerHTML = domString;
-
-
-//Functions - Filtering through Pets
-const showCats = () => {
-  domString = '';  
-  pets.forEach((pet) => {
-    if (pet.type === "cat") {
-      domString += `<div class="card border-success mb-3" style="max-width:18rem;">
-      <div class="card-header bg-transparent border-success"> ${pet.name} </div>
-      <div class="card-body text-success">
-      <img src=${pet.imageUrl} class="card-img-top" alt=${pet.name}>
-        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-      </div>
-      <div class="card-footer bg-info-subtle border-success">${pet.type}
-      </div>
-    </div>`
-    }
-  })
-  targetApp.innerHTML = domString;
+const renderToDom = (divId, html) => {
+  document.querySelector(divId).innerHTML = html;
 }
 
-const showDogs = () => {
-  domString = '';  
-  pets.forEach((pet) => {
-    if (pet.type === "dog") {
-      domString += `<div class="card border-success mb-3" style="max-width:18rem;">
-      <div class="card-header bg-transparent border-success"> ${pet.name} </div>
-      <div class="card-body text-success">
-      <img src=${pet.imageUrl} class="card-img-top" alt=${pet.name}>
-        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-      </div>
-      <div class="card-footer bg-info-subtle border-success">${pet.type}
-      </div>
-    </div>`
-    }
-  })
-  targetApp.innerHTML = domString;
+const cardsOnDom = (array) => {
+  let domString = ''; 
+  for (const pet of array) {
+    domString += `<div class="card border-success mb-3" style="max-width:18rem;">
+    <div class="card-header bg-transparent border-success"> ${pet.name} </div>
+    <div class="card-body text-success">
+    <img src=${pet.imageUrl} class="card-img-top" alt=${pet.name}>
+      <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    </div>
+    <div class="card-footer bg-info-subtle border-success">${pet.type}
+    </div>
+  </div>`
+  }
+renderToDom("#app_pets", domString); 
+return domString; 
 }
 
-const showDinos = () => {
-  domString = '';  
-  pets.forEach((pet) => {
-    if (pet.type === "dino") {
-      domString += `<div class="card border-success mb-3" style="max-width:18rem;">
-      <div class="card-header bg-transparent border-success"> ${pet.name} </div>
-      <div class="card-body text-success">
-      <img src=${pet.imageUrl} class="card-img-top" alt=${pet.name}>
-        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-      </div>
-      <div class="card-footer bg-info-subtle border-success">${pet.type}
-      </div>
-    </div>`
-    }
-  })
-  targetApp.innerHTML = domString;
-}
+renderToDom("#app_pets", cardsOnDom(pets)); 
 
-const showAll = () => {
-  domString = '';  
-  pets.forEach((pet) => {
-      domString += `<div class="card border-success mb-3" style="max-width:18rem;">
-      <div class="card-header bg-transparent border-success"> ${pet.name} </div>
-      <div class="card-body text-success">
-      <img src=${pet.imageUrl} class="card-img-top" alt=${pet.name}>
-        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-      </div>
-      <div class="card-footer bg-info-subtle border-success">${pet.type}
-      </div>
-    </div>`
-    })
-  targetApp.innerHTML = domString;
+const filterPets = (petType) => {
+const filteredPetArray = pets.filter((pet) => pet.type == petType);
+cardsOnDom(filteredPetArray); 
 }
 
 //Event Listeners - Choosing Specific Pets and Showing All Pets 
 document
   .querySelector("#cats")
   .addEventListener('click', () => {
-  showCats()})
+  filterPets("cat")})
 document
   .querySelector("#dogs")
   .addEventListener('click', () => {
-    showDogs()})
+    filterPets("dog")})
 document
   .querySelector("#dinos")
   .addEventListener('click', () => {
-    showDinos()})
+    filterPets("dino")})
 document
   .querySelector("#showAll")
   .addEventListener('click', () => {
-    showAll(); 
+    renderToDom("#app_pets", cardsOnDom(pets)); 
   })
+
