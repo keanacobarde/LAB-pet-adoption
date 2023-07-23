@@ -13,8 +13,7 @@ Navigate to [dbDiagram.io](https://dbDiagram.io) and create an entity for these 
 Once you have completed your entity, [compare with this one](https://dbdiagram.io/d/631ff2e40911f91ba594dc5a).
 
 ## Requirement - Part 2: HTML Representation of Data
-- Using the data provided in `main.js`, take a look at the format and update the data if needed based on the data example above.
-- Loop through each object and render each item to the DOM
+
 
 ![MockUp1](MockUp1.png)
 
