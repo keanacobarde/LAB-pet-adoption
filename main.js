@@ -319,9 +319,12 @@ const eventListenerFunc = () => {
         let petString; 
         petString = e.target.id;
         let petStringId; 
-        petStringId = petString[petString.length - 1];  
-        pets.splice(petStringId - 1, 1);
-        // console.log(pets[petStringId]); 
+        petStringId = parseInt(petString[petString.length - 1]);
+        let index; 
+        index = petStringId - 1; 
+        // console.log(pets[index]);
+        pets.splice(index, 1);
+        cardsOnDom(pets); 
     }}) 
   }
   
